@@ -9,7 +9,7 @@ const dashboardRoutes = require('./dashboardRoutes');
 const router = express.Router();
 
 router.get(
-  '/health',
+  '/',
   asyncHandler(async (req, res) => {
     await pool.query('SELECT 1');
     res.json({ status: 'ok', message: 'API is running' });
