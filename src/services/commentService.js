@@ -1,6 +1,6 @@
-const pool = require("../config/db.js");
+const {pool} = require("../config/db.js");
 
-export const createComment = async (issueId, userId, body) => {
+const createComment = async (issueId, userId, body) => {
   const [result] = await pool.execute(
     `INSERT INTO comments (issue_id, user_id, body)
      VALUES (?, ?, ?)`,
@@ -10,7 +10,7 @@ export const createComment = async (issueId, userId, body) => {
   return result.insertId;
 };
 
-export const getCommentsByIssue = async (issueId) => {
+const getCommentsByIssue = async (issueId) => {
   const [rows] = await pool.execute(
     `SELECT
         c.id,
@@ -28,7 +28,7 @@ export const getCommentsByIssue = async (issueId) => {
   return rows;
 };
 
-export const issueExists = async (issueId) => {
+const issueExists = async (issueId) => {
   const [rows] = await pool.execute(
     "SELECT id FROM issues WHERE id = ?",
     [issueId]
@@ -36,3 +36,5 @@ export const issueExists = async (issueId) => {
 
   return rows.length > 0;
 };
+
+module.exports={getCommentsByIssue,issueExists,createComment};

@@ -1,14 +1,11 @@
 const express =require("express");
 const { validationResult } =require("express-validator");
-
 const {
   addComment,
   getComments,
 } =require("../controllers/commentController.js");
-
-const { commentValidation } =require("../validators/commentValidators.js");
-const { authenticate } =require ("../middleware/auth.js");
-
+const { commentValidation } =require("../validators/commentValidator.js");
+const authenticate = require('../middleware/auth');
 const router = express.Router();
 
 const validate = (req, res, next) => {
@@ -38,4 +35,4 @@ router.get(
   getComments
 );
 
-export default router;
+module.exports = router;

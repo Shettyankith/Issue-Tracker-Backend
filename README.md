@@ -1,96 +1,108 @@
-# Issue Tracker System
+# Issue Tracker - Backend
 
-A full-stack issue tracking application with user authentication, issue management, comments, and a dashboard.
+REST API for the Issue Tracker application built using Node.js, Express, MySQL, and JWT Authentication.
 
 ## Tech Stack
 
-- **Frontend:** React, TypeScript, Tailwind CSS, React Router, Axios
-- **Backend:** Node.js, Express, MySQL, JWT, bcrypt, mysql2
+- Node.js
+- Express.js
+- MySQL
+- JWT Authentication
+- bcrypt
+- Express Validator
 
-## Project Structure
+## Prerequisites
 
-```
-issue-tracker/
-├── backend/          # Express REST API
-└── frontend/         # React app (Phase 6+)
-```
+- Node.js (v18 or above)
+- MySQL Server
+- npm
 
-## Backend Setup (Phase 1)
-
-### Prerequisites
-
-- Node.js 18+
-- MySQL 8+
-
-### 1. Install dependencies
+## Installation
 
 ```bash
+git clone <backend-repository-url>
 cd backend
 npm install
 ```
 
-### 2. Configure environment
+## Environment Variables
 
-```bash
-cp .env.example .env
+Create a `.env` file.
+
+```env
+PORT=5000
+
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=issue_tracker
+
+JWT_SECRET=your_secret_key
 ```
 
-Edit `.env` with your MySQL credentials and a secure `JWT_SECRET`.
+## Database Setup
 
-### 3. Create the database
+1. Create a MySQL database.
 
-Run the schema script against your MySQL server:
-
-```bash
-mysql -u root -p < src/db/schema.sql
+```sql
+CREATE DATABASE issue_tracker;
 ```
 
-Or paste the contents of `backend/src/db/schema.sql` into your MySQL client.
+2. Execute the SQL scripts inside the `db` folder.
 
-### 4. Start the server
+- schema.sql
+- seed.sql (optional)
+
+## Run the Server
 
 ```bash
-# Development (with hot reload)
 npm run dev
+```
 
-# Production
+or
+
+```bash
 npm start
 ```
 
-The API runs at `http://localhost:5000`.
+Server runs at:
 
-### 5. Verify
-
-```bash
-curl http://localhost:5000/api/health
+```
+http://localhost:5000
 ```
 
-Expected response:
+## API Base URL
 
-```json
-{ "status": "ok", "message": "API is running" }
+```
+http://localhost:5000/api
 ```
 
-## API Endpoints (planned)
+## Features
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Register user |
-| POST | `/api/auth/login` | Login |
-| GET | `/api/auth/me` | Current user |
-| GET | `/api/users` | List users |
-| GET/POST | `/api/issues` | List / create issues |
-| GET/PUT/DELETE | `/api/issues/:id` | Issue CRUD |
-| GET/POST | `/api/issues/:id/comments` | Comments |
-| GET | `/api/dashboard/stats` | Issue counts by status |
+- User Authentication
+- JWT Authorization
+- Issue CRUD
+- Issue Assignment
+- Status Management
+- Comments
+- Dashboard Statistics
+- Input Validation
+- Error Handling
 
-## Build Phases
+## Folder Structure
 
-1. ✅ Backend scaffold, DB schema, env config
-2. ✅ Auth (register, login, JWT middleware)
-3. ✅ Issues CRUD + assignment + status
-4. Comments
-5. Dashboard stats endpoint
-6. Frontend auth + routing
-7. Issue list/detail/create/edit UI
-8. Comments UI + dashboard page
+```
+src/
+ ├── config/
+ ├── controllers/
+ ├── middleware/
+ ├── routes/
+ ├── services/
+ ├── validators/
+ ├── db/
+ ├── app.js
+ └── server.js
+```
+
+

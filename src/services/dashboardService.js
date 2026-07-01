@@ -1,6 +1,6 @@
-const pool =require("../config/db.js");
+const {pool} =require("../config/db");
 
-export const getDashboardStats = async (userId) => {
+const getDashboardStats = async (userId) => {
   const [[total]] = await pool.execute(
     "SELECT COUNT(*) AS totalIssues FROM issues"
   );
@@ -32,3 +32,5 @@ export const getDashboardStats = async (userId) => {
     myAssignedIssues: assigned.myAssignedIssues,
   };
 };
+
+module.exports={getDashboardStats}

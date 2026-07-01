@@ -1,6 +1,6 @@
 const dashboardService =require("../services/dashboardService.js");
 
-export const getDashboard = async (req, res, next) => {
+const getDashboard = async (req, res, next) => {
   try {
     const userId = req.user.id;
 
@@ -11,6 +11,9 @@ export const getDashboard = async (req, res, next) => {
       data: stats,
     });
   } catch (err) {
+    console.log("Error thrown is : ",err)
     next(err);
   }
 };
+
+module.exports={getDashboard};

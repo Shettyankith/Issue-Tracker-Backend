@@ -1,6 +1,6 @@
 const commentService = require("../services/commentService.js");
 
-export const addComment = async (req, res, next) => {
+ const addComment = async (req, res, next) => {
   try {
     const issueId = Number(req.params.issueId);
     const { body } = req.body;
@@ -31,7 +31,7 @@ export const addComment = async (req, res, next) => {
   }
 };
 
-export const getComments = async (req, res, next) => {
+ const getComments = async (req, res, next) => {
   try {
     const issueId = Number(req.params.issueId);
 
@@ -55,3 +55,5 @@ export const getComments = async (req, res, next) => {
     next(err);
   }
 };
+
+module.exports={addComment,getComments};
